@@ -72,7 +72,7 @@ const options = {
     },
 };
 
-const datetimePicker = flatpickr('#date-picker', options);
+const datetimePicker = flatpickr('#datetime-picker', options);
 console.log("🚀 ~ datetimePicker:", datetimePicker)
 
 
