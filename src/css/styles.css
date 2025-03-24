@@ -16,3 +16,36 @@
 @import url('./badges.css');
 @import url('./back-link.css');
 @import url('./footer.css');
+
+
+body {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+
+a {
+  color: currentColor;
+  text-decoration: none;
+  display: flex;
+  font-size: 30px;
+  border: solid 1px black;
+  padding: 16px;
+  border-radius: 16px;
+  width: 360px;
+  justify-content: center;
+  color: #FFFFFF;
+  transition: scale 300ms;
+  background-color: #c100ff;
+
+}
+
+a:hover {
+  background-color: #ad29d7;
+  scale: 1.2;
+  transition: scale 300ms;
+}
