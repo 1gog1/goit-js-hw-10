@@ -40,12 +40,13 @@ a {
   justify-content: center;
   color: #FFFFFF;
   transition: scale 300ms;
-  background-color: #c100ff;
+  background-color: #e5cf07;
+  max-width: 360px;
 
 }
 
 a:hover {
-  background-color: #ad29d7;
+  background-color: #b0d21a;
   scale: 1.2;
   transition: scale 300ms;
 }
