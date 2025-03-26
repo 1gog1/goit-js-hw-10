@@ -1,5 +1,7 @@
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
+import iconSuccess from "../img/check-circle-fill.svg";
+import iconError from "../img/x-octagon.svg";
 
 
 const form = document.querySelector("form");
@@ -11,32 +13,32 @@ form.addEventListener("submit", event => {
     new Promise((resolve, reject) => {
         setTimeout(() => {
             if (selected === 'fulfilled') {
-                resolve(`✅ Fulfilled promise in ${delay}ms`);
+                resolve(delay);
             } else {
-                reject(`❌ Rejected promise in ${delay}ms`);
+                reject(delay);
             }
         }, delay);
-    }).then(message => {
+    }).then(delay => {
         iziToast.success({
             titleColor: '#ffffff',
             messageColor: '#ffffff',
             color: '#59A10D',
             pauseOnHover: false,
             timeout: 5000,
-            iconUrl: '../img/bi_check2-circle.svg',
+            iconUrl: iconSuccess,
             title: 'OK',
             message: `Fulfilled promise in ${delay}ms`,
         });
-    }).catch(message => {
-            iziToast.error({
-                titleColor: '#ffffff',
-                messageColor: '#ffffff',
-                color: '#EF4040',
-                pauseOnHover: 'false',
-                timeout: `5000`,
-                iconUrl: '../img/bi_x-octagon.svg',
-                title: 'Error',
-                message: `Rejected promise in ${delay}ms`,
-            });
-    })
+    }).catch(delay => {
+        iziToast.error({
+            titleColor: '#ffffff',
+            messageColor: '#ffffff',
+            color: '#EF4040',
+            pauseOnHover: 'false',
+            timeout: `5000`,
+            iconUrl: iconError,
+            title: 'Error',
+            message: `Rejected promise in ${delay}ms`,
+        });
+    });
 });

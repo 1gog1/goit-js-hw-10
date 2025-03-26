@@ -2,11 +2,14 @@ import flatpickr from "flatpickr";
 import iziToast from "izitoast";
 import "flatpickr/dist/flatpickr.min.css";
 import "izitoast/dist/css/iziToast.min.css";
+import iconError from '../img/x-octagon.svg';
+
 
 let userSelectedDate = null;
 let calculateTime = null;
 
 const startButton = document.querySelector('[data-start]');
+const dateTimeInput = document.querySelector('#datetime-picker');
 startButton.disabled = true;
 
 
@@ -35,10 +38,6 @@ function convertMs(ms) {
     return { days, hours, minutes, seconds };
 }
 
-console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
-console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
-console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
-
 
 const options = {
     enableTime: true,
@@ -48,8 +47,8 @@ const options = {
     onClose(selectedDates) {
 
         userSelectedDate = selectedDates[0];
-        console.log(`Початкова дата: ${new Date()}`);
-        console.log(`Кінцева дата: ${selectedDates[0]}`);
+        // console.log(`Початкова дата: ${new Date()}`);
+        // console.log(`Кінцева дата: ${selectedDates[0]}`);
 
 
         if (selectedDates[0] < new Date()) {
@@ -60,7 +59,7 @@ const options = {
                 color: '#EF4040',
                 pauseOnHover: false,
                 timeout: 5000,
-                iconUrl: '../img/bi_x-octagon.svg',
+                iconUrl: iconError,
                 title: 'Error',
                 message: `Please choose a date in the future`,
             });
@@ -73,11 +72,12 @@ const options = {
 };
 
 const datetimePicker = flatpickr('#datetime-picker', options);
-console.log("🚀 ~ datetimePicker:", datetimePicker)
+// console.log("🚀 ~ datetimePicker:", datetimePicker)
 
 
 startButton.addEventListener('click', event => {
     startButton.disabled = true;
+    dateTimeInput.disabled = true;
 
     const timeCalculate = setInterval(() => {
         const timeLeft = userSelectedDate - new Date();
@@ -89,6 +89,7 @@ startButton.addEventListener('click', event => {
                 title: 'Success',
                 message: 'Countdown finished!'
             });
+            dateTimeInput.disabled = false;
             return;
         }
 
